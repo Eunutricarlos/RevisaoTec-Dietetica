@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Técnica Dietética — Revisão</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f7f8fa;--card:#fff;--ink:#1c2230;--mute:#667085;--line:#e4e7ec;--acc:#0e8f7e;--onacc:#fff;--bad:#d64550;--ok:#2f9e63;--soft:#e8f5f2;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1419;--card:#171d25;--ink:#e8edf2;--mute:#94a0b0;--line:#252d38;--acc:#3ccbb5;--onacc:#0f1419;--bad:#f0808a;--ok:#5fd398;--soft:#15302c}}
+:root[data-theme="dark"]{--bg:#0f1419;--card:#171d25;--ink:#e8edf2;--mute:#94a0b0;--line:#252d38;--acc:#3ccbb5;--onacc:#0f1419;--bad:#f0808a;--ok:#5fd398;--soft:#15302c}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 80px)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 Figtree,system-ui,sans-serif}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.2;margin:0}
+.in{max-width:720px;margin:0 auto;padding:0 18px}
+header{padding:18px 0 4px}header h1{font-size:clamp(24px,6vw,32px)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);border-bottom:1px solid var(--line);z-index:5}
+.tabs{display:flex;gap:8px;padding:10px 0}
+.tabs button{flex:1;font:600 14px Figtree,sans-serif;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 6px;cursor:pointer}
+.tabs button.on{background:var(--acc);border-color:var(--acc);color:var(--onacc)}
+.view{display:none}.view.on{display:block}
+h2{font-size:22px;margin:20px 0 8px}
+p{margin:6px 0}
+.intro{color:var(--mute);margin:16px 0 4px;font-size:15px}
+.card{display:flex;align-items:center;gap:12px;width:100%;text-align:left;font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 15px;margin:8px 0;cursor:pointer}
+.card:hover,.card:focus-visible{border-color:var(--acc);outline:none}
+.card div{flex:1}.card b{display:block;font-weight:600}
+.card span{display:block;color:var(--mute);font-size:14px;line-height:1.4;margin-top:2px}
+.card em{font-style:normal;color:var(--mute);font-size:20px}
+.back{display:inline-block;margin:14px 0 0;font:600 14px Figtree,sans-serif;color:var(--acc);background:none;border:0;padding:4px 0;cursor:pointer}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0}
+.q>p{font-weight:600;margin-top:0}
+.tag{display:inline-block;font-size:13px;font-weight:600;color:var(--acc);background:var(--soft);border-radius:6px;padding:1px 8px;margin-bottom:4px}
+.o{display:block;width:100%;text-align:left;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 11px;margin:6px 0;cursor:pointer}
+.o:hover:enabled,.o:focus-visible{border-color:var(--acc);outline:none}
+.vf{display:flex;gap:8px}.vf .o{text-align:center;margin:8px 0 0}
+.right{border-color:var(--ok)!important;background:color-mix(in srgb,var(--ok) 18%,transparent)!important}
+.wrong{border-color:var(--bad)!important;background:color-mix(in srgb,var(--bad) 18%,transparent)!important}
+.fb{margin-top:8px;border-radius:8px;padding:8px 11px;font-size:15px;background:var(--soft)}
+.fb.bad{background:color-mix(in srgb,var(--bad) 12%,transparent);border-left:4px solid var(--bad)}
+.fb.good{border-left:4px solid var(--ok)}
+.fb b{display:block}
+textarea{width:100%;min-height:80px;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px;resize:vertical}
+.btn{font:600 14px Figtree,sans-serif;background:var(--acc);color:var(--onacc);border:0;border-radius:8px;padding:8px 14px;cursor:pointer;margin:8px 8px 0 0}
+.btn.out{background:none;color:var(--bad);border:1px solid var(--bad)}
+#score{position:sticky;bottom:calc(env(safe-area-inset-bottom,0px) + 8px);background:var(--ink);color:var(--bg);border-radius:99px;padding:8px 16px;width:max-content;max-width:100%;margin:14px auto 0;font-weight:600;font-size:14px}
+.sum{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.leg{flex:1;min-width:160px}.leg div{margin:4px 0}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+.bar{margin:12px 0}.bl{display:flex;justify-content:space-between;gap:8px;font-size:14px}.bl span:last-child{color:var(--mute);text-align:right}
+.tr{height:10px;border-radius:99px;overflow:hidden;background:var(--line);margin-top:4px}
+.tr.has{background:color-mix(in srgb,var(--bad) 30%,transparent)}.fl{height:100%;background:var(--ok)}
+ul.w{padding-left:20px;margin:6px 0}ul.w li{margin:4px 0;font-size:15px}
+footer{padding:26px 0 60px;color:var(--mute);font-size:14px}
+</style>
+</head>
+<body>
+<div class="top"><div class="in">
+<header><h1>Técnica Dietética</h1></header>
+<div class="tabs"><button class="on" data-v="pra">Questões</button><button data-v="pro">Progresso</button></div>
+</div></div>
+<main class="in">
+<div class="view on" id="pra">
+<div id="home"><p class="intro">Exercício de revisão. Escolha um conjunto. Suas respostas ficam salvas e o percentual de acerto continua somando.</p><div id="cards"></div></div>
+<div id="run" style="display:none">
+<button class="back" id="back">‹ Todos os conjuntos</button>
+<h2 id="rt"></h2><div id="rl"></div>
+<div id="score" aria-live="polite"></div>
+<p><button class="btn" id="redo">Refazer este conjunto</button></p>
+</div>
+</div>
+<div class="view" id="pro"><div id="pg"></div></div>
+</main>
+<footer><div class="in">Baseado no Exercício de Revisão de Técnica Dietética. O histórico fica salvo neste navegador.</div></footer>
+<script>
+var MC=[
+{t:"Contaminação cruzada e higiene",q:"Um manipulador cortou filés de frango cru com uma faca e uma tábua e, sem higienizá-las, usou os mesmos utensílios para cortar tomates que serão servidos crus. Qual alternativa está correta?",
+o:["O procedimento é seguro, pois o tomate possui alta quantidade de água livre.","A contaminação pode ser evitada apenas mantendo os tomates sob refrigeração.","Os utensílios devem ser devidamente higienizados antes de serem utilizados com alimentos que serão consumidos sem cocção.","Basta passar um pano seco sobre os utensílios antes de utilizá-los novamente.","O risco de contaminação existe somente quando o alimento apresenta alteração de cheiro ou aparência."],a:2,
+e:["A água livre do tomate não impede a contaminação. A faca e a tábua levam microrganismos do frango cru para um alimento que não vai ser cozido.","A refrigeração só retarda a multiplicação dos microrganismos. Ela não os elimina nem impede que sejam transferidos.","Certo. Utensílios usados em alimento cru precisam ser higienizados antes de tocar alimentos consumidos sem cocção, porque nada vai eliminar os microrganismos depois.","Pano seco não remove nem inativa microrganismos. É preciso lavar e sanitizar.","Muitos microrganismos que causam doença não mudam cheiro nem aparência. O risco existe mesmo com o alimento aparentemente normal."]},
+{t:"Fator de correção na compra",q:"Para uma preparação são necessários 2,4 kg de cenoura já limpa e pronta para o corte. O fator de correção é 1,20. Qual a quantidade aproximada a comprar?",
+o:["1,8 kg","2,0 kg","2,4 kg","2,88 kg","3,20 kg"],a:3,
+e:["Menor que 2,4 kg. Como há perdas na limpeza, o peso comprado (bruto) tem de ser maior que o peso limpo.","Também é menor que 2,4 kg. Com FC maior que 1, o bruto sempre é maior que o líquido.","2,4 kg é o peso já limpo (líquido). Falta somar as perdas do pré-preparo.","Certo. Peso bruto = peso líquido × FC = 2,4 × 1,20 = 2,88 kg.","Não corresponde ao cálculo. 2,4 × 1,20 dá 2,88 kg, não 3,20."]},
+{t:"Índice de cocção",q:"400 g de arroz cru foram cozidos e, depois de pronto, pesaram 1.000 g. Qual o índice de cocção?",
+o:["0,4","1,5","2,0","2,5","3,0"],a:3,
+e:["Você inverteu a divisão (400 ÷ 1.000). O índice é peso cozido ÷ peso cru.","Não resulta de 1.000 ÷ 400.","IC 2,0 daria 800 g de arroz cozido, e o enunciado diz 1.000 g.","Certo. IC = peso cozido ÷ peso cru = 1.000 ÷ 400 = 2,5. O arroz ganhou peso por absorver água.","IC 3,0 daria 1.200 g de arroz cozido."]},
+{t:"Planejamento de quantidade",q:"Uma escola vai oferecer porção de aproximadamente 120 g de arroz cozido para cada um dos 75 participantes. Qual quantidade de arroz cozido deve ser disponibilizada?",
+o:["6 kg","7 kg","8 kg","9 kg","10 kg"],a:3,
+e:["6 kg daria só 80 g por pessoa.","7 kg daria cerca de 93 g por pessoa.","8 kg daria cerca de 107 g por pessoa.","Certo. 120 g × 75 pessoas = 9.000 g = 9 kg.","10 kg daria cerca de 133 g por pessoa, mais que o planejado."]},
+{t:"Higiene e indicadores na UAN",q:"Em uma UAN, o nutricionista viu rendimento diferente do planejado, perdas elevadas no preparo e falhas de higienização. Qual alternativa explica a importância da higiene e dos indicadores?",
+o:["Esses conhecimentos servem apenas para definir o sabor das preparações.","Os indicadores são utilizados somente para determinar o valor nutricional dos alimentos.","A higiene e os indicadores auxiliam no controle da produção, na prevenção de contaminações, no planejamento de quantidades, na redução de desperdícios e no controle dos custos.","O fator de correção e o índice de cocção são utilizados exclusivamente em restaurantes comerciais.","Os procedimentos de higiene não interferem na qualidade das refeições quando os alimentos são mantidos refrigerados."],a:2,
+e:["Higiene e indicadores não definem sabor. Eles tratam de segurança, rendimento e custo.","Indicadores como FC e IC não servem só para valor nutricional. Ajudam em quantidades, rendimento, perdas e custo.","Certo. É a alternativa que reúne tudo: controle da produção, prevenção de contaminação, planejamento, menos desperdício e controle de custos.","FC e IC são usados em qualquer serviço de alimentação, não só em restaurantes comerciais.","Refrigerar não substitui a higiene. Falhas de higienização comprometem a qualidade e a segurança, mesmo com refrigeração."]},
+{t:"Divisão e união dos alimentos",q:"Qual alternativa apresenta uma operação de divisão seguida de uma operação de união?",
+o:["Cortar uma cenoura em cubos e misturar os ingredientes de uma salada.","Bater claras em neve e peneirar a farinha.","Emulsionar um molho e triturar uma fruta.","Misturar os ingredientes de uma massa e cortar uma cebola.","Bater um creme e emulsionar um molho."],a:0,
+e:["Certo. Cortar é divisão e misturar é união, nessa ordem. Divisão: cortar, triturar, peneirar. União: misturar, bater, emulsionar.","Bater é união e peneirar é divisão. A ordem está invertida.","Emulsionar é união e triturar é divisão. A ordem está invertida.","Misturar é união e cortar é divisão. A ordem está invertida.","Bater e emulsionar são as duas operações de união. Não há divisão."]},
+{t:"Métodos de conservação",q:"Qual situação apresenta uma relação correta entre o método de conservação e sua finalidade?",
+o:["O congelamento tem como objetivo retirar completamente a água dos alimentos.","A pasteurização consiste em submeter determinados alimentos ao calor controlado, destruindo todos os microrganismos patogênicos e aumentando sua conservação.","A desidratação aumenta a quantidade de água livre disponível no alimento.","A secagem é utilizada exclusivamente para alimentos de origem animal.","Os aditivos alimentares têm como única finalidade substituir o processo de refrigeração."],a:1,
+e:["O congelamento não retira a água. Ele a transforma em gelo e retarda a multiplicação de microrganismos e as reações no alimento.","Certo. A pasteurização usa calor controlado para destruir os patogênicos e prolongar a conservação, como no leite.","A desidratação reduz a água livre, não aumenta. Menos água disponível dificulta o crescimento de microrganismos.","A secagem vale para vários alimentos, como frutas, grãos e carnes, e não só para os de origem animal.","Aditivos têm várias funções (como conservar ou evitar oxidação) e não existem só para substituir a refrigeração."]},
+{t:"Açúcares e edulcorantes",q:"Sobre os ingredientes usados para adoçar preparações, qual alternativa está correta?",
+o:["O açúcar mascavo possui coloração mais escura e sabor característico, podendo influenciar a cor, o sabor e a umidade das preparações.","O açúcar de confeiteiro apresenta cristais muito maiores que os do açúcar cristal.","A glucose de milho é utilizada somente para aumentar a doçura, sem exercer outras funções nas preparações.","O mel não interfere nas características sensoriais dos alimentos.","Os edulcorantes possuem exatamente as mesmas propriedades tecnológicas do açúcar em qualquer receita."],a:0,
+e:["Certo. O mascavo é mais escuro, tem sabor marcante e mais umidade, e isso muda a cor, o sabor e a umidade da preparação.","O açúcar de confeiteiro é muito fino, com partículas bem menores que as do açúcar cristal.","A glucose de milho também influencia textura, brilho e umidade, além da doçura.","O mel interfere em sabor, cor e umidade e muda características sensoriais das preparações.","Edulcorantes adoçam, mas não têm o mesmo efeito do açúcar em volume, textura, cor e umidade."]},
+{t:"Cálculo do fator de correção",q:"Uma abóbora pesou 1.200 g com casca e partes descartáveis. Depois da limpeza, restaram 960 g aproveitáveis. Qual o fator de correção (FC = peso bruto ÷ peso líquido)?",
+o:["0,60","0,80","1,00","1,25","1,50"],a:3,
+e:["Com perdas, o bruto é maior que o líquido, então o FC não pode ficar abaixo de 1.","0,80 vem de 960 ÷ 1.200. Você dividiu líquido por bruto, e a fórmula é bruto ÷ líquido.","FC 1,00 significaria sem nenhuma perda.","Certo. FC = 1.200 ÷ 960 = 1,25. Para obter 1 kg limpo é preciso comprar cerca de 1,25 kg.","FC 1,50 daria 1.440 g de peso bruto para os mesmos 960 g limpos."]},
+{t:"Branqueamento",q:"Antes de congelar uma hortaliça, ela é submetida rapidamente ao calor e depois resfriada. Qual a principal finalidade?",
+o:["Promover o cozimento completo da hortaliça.","Retirar toda a água presente no alimento.","Inativar enzimas responsáveis por alterações indesejáveis durante o armazenamento.","Esterilizar completamente o alimento.","Aumentar a quantidade de fibras alimentares."],a:2,
+e:["O branqueamento é rápido e não cozinha a hortaliça por completo.","Ele não retira a água do alimento.","Certo. O calor rápido inativa enzimas que causariam alterações de cor, sabor e textura durante o armazenamento.","O branqueamento não esteriliza. Reduz parte dos microrganismos, mas não elimina todos.","Não altera a quantidade de fibras."]}
+];
+var VF=[
+{t:"V ou F: higiene e contaminação cruzada",s:[
+["Utensílios utilizados em alimentos crus podem transmitir microrganismos para alimentos prontos caso não sejam adequadamente higienizados.",1,"Sem higienização, o utensílio leva os microrganismos do cru para o pronto."],
+["A contaminação cruzada pode ocorrer entre alimentos crus e alimentos prontos para o consumo.",1,"É exatamente esse o caminho típico da contaminação cruzada."],
+["A refrigeração elimina todos os microrganismos presentes nos alimentos.",0,"A refrigeração só retarda a multiplicação. Não elimina microrganismos."],
+["É importante higienizar superfícies e equipamentos utilizados durante a manipulação dos alimentos.",1,"Superfícies e equipamentos mal higienizados espalham microrganismos."],
+["Alimentos que apresentam aparência normal estão necessariamente livres de microrganismos causadores de doenças.",0,"Muitos patogênicos não alteram aparência, cheiro nem sabor."]]},
+{t:"V ou F: fator de correção",s:[
+["O fator de correção relaciona o peso bruto do alimento ao seu peso líquido.",1,"FC = peso bruto ÷ peso líquido."],
+["Quanto maior for a perda durante o pré-preparo, maior poderá ser o fator de correção.",1,"Mais perda significa mais peso bruto para o mesmo líquido, então o FC sobe."],
+["O fator de correção pode auxiliar na estimativa da quantidade de alimento que deverá ser adquirida.",1,"Multiplica-se o peso líquido necessário pelo FC para saber quanto comprar."],
+["O fator de correção é calculado dividindo-se o peso líquido pelo peso bruto.",0,"A divisão está invertida. O correto é peso bruto ÷ peso líquido."],
+["Cascas, sementes, talos e partes inadequadas podem contribuir para as perdas consideradas no fator de correção.",1,"Essas partes descartadas compõem a diferença entre bruto e líquido."]]},
+{t:"V ou F: índice de cocção",s:[
+["O índice de cocção pode ser calculado dividindo o peso do alimento cozido pelo peso do alimento cru.",1,"IC = peso cozido ÷ peso cru."],
+["Um alimento que absorve água durante a cocção pode apresentar aumento de peso.",1,"É o que acontece com o arroz e o feijão, por exemplo."],
+["Se um alimento apresenta 500 g antes da cocção e 1.000 g depois, seu índice de cocção é 2,0.",1,"1.000 ÷ 500 = 2,0."],
+["O índice de cocção é utilizado exclusivamente para avaliar o preço dos alimentos.",0,"Ele serve para rendimento e planejamento de quantidades, não só para preço."],
+["Diferentes métodos de cocção podem influenciar o rendimento final de uma preparação.",1,"Cada método muda a perda ou o ganho de água e gordura, e com isso o rendimento."]]},
+{t:"V ou F: métodos de conservação",s:[
+["O congelamento é um método utilizado para aumentar a conservação de diversos alimentos.",1,"O frio intenso retarda a multiplicação de microrganismos e as reações no alimento."],
+["A pasteurização utiliza tratamento térmico controlado.",1,"É calor em temperatura e tempo controlados."],
+["A desidratação reduz a quantidade de água disponível no alimento.",1,"Menos água livre dificulta o crescimento de microrganismos."],
+["Todos os métodos de conservação eliminam completamente qualquer possibilidade de deterioração.",0,"Os métodos retardam as alterações. Nenhum elimina por completo a possibilidade de deterioração."],
+["A escolha do método de conservação deve considerar as características do alimento e o objetivo do processamento.",1,"Cada alimento reage de um jeito a cada método."]]},
+{t:"V ou F: técnica dietética",s:[
+["O corte dos alimentos é considerado um método de divisão.",1,"Cortar, triturar e peneirar são operações de divisão."],
+["A mistura de ingredientes pode ser considerada um método de união.",1,"Misturar, bater e emulsionar são operações de união."],
+["O branqueamento pode ser utilizado como pré-tratamento antes do congelamento de alguns vegetais.",1,"Ele inativa enzimas que alterariam o vegetal no armazenamento."],
+["O açúcar pode contribuir apenas para o sabor doce, não interferindo em outras características das preparações.",0,"O açúcar também influencia cor, textura, umidade e volume."],
+["Diferentes tipos de açúcares podem apresentar características distintas de cor, sabor, textura e aplicação culinária.",1,"Mascavo, cristal e confeiteiro, por exemplo, se comportam de formas diferentes."]]}
+];
+var DISC={t:"Questão discursiva",q:["Qual método foi escolhido? (congelamento, pasteurização, desidratação, secagem ou aditivos)","Cite um alimento que pode utilizar esse método.","Explique, de maneira resumida, como o método é realizado.","Qual é sua principal finalidade?","Cite uma vantagem desse método.","Apresente uma possível limitação ou cuidado relacionado à sua utilização."],
+ex:["Pasteurização.","Leite.","Aquece-se o alimento a uma temperatura controlada por um tempo determinado e depois ele é resfriado rapidamente.","Destruir os microrganismos patogênicos e aumentar a conservação do alimento.","Deixa o alimento mais seguro e preserva boa parte das características sensoriais e nutricionais.","Não esteriliza o alimento. Ele ainda precisa de refrigeração e tem prazo de validade limitado."]};
+
+var $=function(i){return document.getElementById(i)};
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!==undefined)e.textContent=x;return e}
+var LS='tecdiet_v1',D={};
+try{D=JSON.parse(localStorage.getItem(LS))||{}}catch(e){D={}}
+function save(){try{localStorage.setItem(LS,JSON.stringify(D))}catch(e){}}
+function rec(id,ok){var r=D[id]||(D[id]={c:0,w:0});if(ok)r.c++;else r.w++;save()}
+
+// grupos e itens
+var G=[{id:'mc',t:'Múltipla escolha',sub:'10 questões com cálculos, higiene e conservação',items:MC.map(function(q,i){return{id:'m'+i,l:(i+1)+'. '+q.t}})}];
+VF.forEach(function(g,gi){G.push({id:'v'+gi,t:g.t,sub:'5 afirmações',items:g.s.map(function(s,j){return{id:'v'+gi+'_'+j,l:s[0]}})})});
+function stat(g){var c=0,w=0;g.items.forEach(function(it){var r=D[it.id];if(r){c+=r.c;w+=r.w}});return{c:c,w:w}}
+function pct(s){var t=s.c+s.w;return t?Math.round(100*s.c/t):0}
+
+// home
+function cards(){var h=$('cards');h.innerHTML='';
+G.concat([{id:'disc',t:DISC.t,sub:'Escolha um método e responda 6 itens (não entra na porcentagem)',items:[]}]).forEach(function(g){
+var s=stat(g),t=s.c+s.w;var b=el('button','card');var d=el('div');d.appendChild(el('b','',g.t));
+d.appendChild(el('span','',g.sub+(t?' · '+pct(s)+'% de acerto ('+s.c+' certas, '+s.w+' erradas)':'')));
+b.appendChild(d);b.appendChild(el('em','','›'));b.onclick=function(){open_(g)};h.appendChild(b)})}
+var cur,run;
+function open_(g){cur=g;$('home').style.display='none';$('run').style.display='block';$('rt').textContent=g.t;build();window.scrollTo(0,0)}
+function back(){$('run').style.display='none';$('home').style.display='block';cards();window.scrollTo(0,0)}
+function fb(box,ok,html){box.className='fb '+(ok?'good':'bad');box.innerHTML='';html.forEach(function(p){var d=el('div');if(p[0]){d.appendChild(el('b','',p[0]))}d.appendChild(document.createTextNode(p[1]));box.appendChild(d)})}
+function upd(){var t=run.c+run.w,tot=cur.items.length,a=stat({items:G.reduce(function(x,g){return x.concat(g.items)},[])});
+$('score').textContent='Nesta rodada: '+run.c+' certas, '+run.w+' erradas ('+t+'/'+tot+') · Geral: '+pct(a)+'%'}
+function build(){var l=$('rl');l.innerHTML='';run={c:0,w:0};$('score').style.display='block';
+if(cur.id==='disc'){$('score').style.display='none';
+DISC.q.forEach(function(q,i){var d=el('div','q');d.appendChild(el('p','',(i+1)+'. '+q));var ta=document.createElement('textarea');ta.placeholder='Escreva sua resposta';d.appendChild(ta);
+var b=el('button','btn','Ver exemplo');var x=el('div');b.onclick=function(){b.remove();x.className='fb good';x.textContent='Exemplo (pasteurização): '+DISC.ex[i]};d.appendChild(b);d.appendChild(x);l.appendChild(d)});return}
+if(cur.id==='mc'){MC.forEach(function(q,i){var d=el('div','q');d.appendChild(el('span','tag','Questão '+(i+1)));d.appendChild(el('p','',q.q));var box=el('div');
+var bs=[];q.o.forEach(function(o,k){var b=el('button','o','ABCDE'[k]+') '+o);bs.push(b);b.onclick=function(){
+bs.forEach(function(x){x.disabled=true});var ok=k===q.a;bs[q.a].classList.add('right');if(!ok)b.classList.add('wrong');
+rec('m'+i,ok);if(ok)run.c++;else run.w++;
+fb(box,ok,ok?[['Correto.',q.e[q.a]]]:[['Errou. A correta é a '+'ABCDE'[q.a]+'.',''],['Por que a '+'ABCDE'[k]+' está errada: ',q.e[k]],['Por que a '+'ABCDE'[q.a]+' está certa: ',q.e[q.a]]]);upd()};d.appendChild(b)});
+d.appendChild(box);l.appendChild(d)})}
+else{var gi=+cur.id.slice(1);VF[gi].s.forEach(function(s,j){var d=el('div','q');d.appendChild(el('span','tag','Afirmação '+(j+1)));d.appendChild(el('p','',s[0]));var box=el('div');
+var w=el('div','vf'),bs=[];[['Verdadeiro',1],['Falso',0]].forEach(function(v){var b=el('button','o',v[0]);bs.push(b);b.onclick=function(){
+bs.forEach(function(x){x.disabled=true});var ok=v[1]===s[1];bs[s[1]?0:1].classList.add('right');if(!ok)b.classList.add('wrong');
+rec('v'+gi+'_'+j,ok);if(ok)run.c++;else run.w++;
+fb(box,ok,ok?[['Correto.',s[2]]]:[['Errou. A afirmação é '+(s[1]?'verdadeira':'falsa')+'.',s[2]]]);upd()};w.appendChild(b)});
+d.appendChild(w);d.appendChild(box);l.appendChild(d)})}
+upd()}
+$('back').onclick=back;$('redo').onclick=function(){build();window.scrollTo(0,0)};
+
+// progresso
+function donut(c,w){var t=c+w,p=t?c/t:0,L=2*Math.PI*54;
+return '<svg viewBox="0 0 140 140" width="150" height="150" role="img" aria-label="Acertos '+Math.round(p*100)+'%"><circle cx="70" cy="70" r="54" fill="none" stroke="'+(t?'var(--bad)':'var(--line)')+'" stroke-width="16"/><circle cx="70" cy="70" r="54" fill="none" stroke="var(--ok)" stroke-width="16" stroke-dasharray="'+(p*L)+' '+L+'" transform="rotate(-90 70 70)"/><text x="70" y="77" text-anchor="middle" font-size="24" font-weight="600" fill="currentColor">'+(t?Math.round(p*100)+'%':'—')+'</text></svg>'}
+var zr=false;
+function prog(){var all=[];G.forEach(function(g){all=all.concat(g.items)});var s=stat({items:all}),t=s.c+s.w,h=$('pg');
+var html='<h2>Seu progresso</h2>';
+if(!t){html+='<p class="intro">Você ainda não respondeu nenhuma questão. Faça um conjunto na aba Questões e o gráfico aparece aqui.</p>'}
+else{html+='<div class="sum">'+donut(s.c,s.w)+'<div class="leg"><div><span class="dot" style="background:var(--ok)"></span><b>'+s.c+'</b> acertos ('+pct(s)+'%)</div><div><span class="dot" style="background:var(--bad)"></span><b>'+s.w+'</b> erros ('+(100-pct(s))+'%)</div><div style="color:var(--mute);font-size:14px">'+t+' respostas no total. O histórico é acumulado e não zera quando você refaz.</div></div></div>';
+html+='<h2>Por conjunto</h2>';
+G.forEach(function(g){var x=stat(g),n=x.c+x.w;html+='<div class="bar"><div class="bl"><span>'+g.t+'</span><span>'+(n?pct(x)+'% · '+x.c+' certas · '+x.w+' erradas':'sem respostas')+'</span></div><div class="tr'+(n?' has':'')+'"><div class="fl" style="width:'+(n?pct(x):0)+'%"></div></div></div>'});
+var er=all.filter(function(it){return D[it.id]&&D[it.id].w>0}).sort(function(a,b){return D[b.id].w-D[a.id].w}).slice(0,5);
+if(er.length){html+='<h2>Onde você mais errou</h2><ul class="w" id="ew"></ul>'}}
+h.innerHTML=html;
+if($('ew'))er.forEach(function(it){var r=D[it.id];$('ew').appendChild(el('li','',it.l+' — errou '+r.w+' de '+(r.c+r.w)+' vezes'))});
+if(t){var b=el('button','btn out',zr?'Tem certeza? Clique de novo para apagar':'Limpar histórico');b.onclick=function(){if(zr){D={};save();zr=false;prog()}else{zr=true;prog()}};h.appendChild(b)}}
+
+document.querySelectorAll('.tabs button').forEach(function(b){b.onclick=function(){
+document.querySelectorAll('.tabs button').forEach(function(x){x.classList.toggle('on',x===b)});
+document.querySelectorAll('.view').forEach(function(v){v.classList.toggle('on',v.id===b.dataset.v)});
+zr=false;if(b.dataset.v==='pro')prog();else back();window.scrollTo(0,0)}});
+cards();
+</script>
+</body>
+</html>
